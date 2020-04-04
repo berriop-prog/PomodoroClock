@@ -1,48 +1,50 @@
-import React from 'react';
+import React, { Component } from 'react';
 
-function BreakInterval(props) {
-  function decreaseCounter() {
-    if (props.breakInterval === 1) {
+class BreakInterval extends Component {
+  decreaseCounter = () => {
+    if (this.props.breakInterval === 1) {
       return;
     }
   }
 
-  function increaseCounter() {
-    if (props.breakInterval === 60) {
+  increaseCounter = () => {
+    if (this.props.breakInterval === 60) {
       return;
     }
-    props.increaseBreak();
+    this.props.increaseBreak();
   }
 
-  function decreaseCounter() {
-    if (props.breakInterval === 60) {
+  decreaseCounter = () => {
+    if (this.props.breakInterval === 60) {
       return;
     }
-    props.decreaseBreak();
+    this.props.decreaseBreak();
   }
 
-  return (
-    <section>
-      <h4>Break Length</h4>
-      <section className="interval-container">
-        <button
-          disabled={props.isPlay === true ? 'disabled' : ''}
-          onClick={decreaseCounter}
-        >
-          Dowm
-        </button>
+  render = () => { 
+    return (
+      <section>
+        <h4>Break Length</h4>
+        <section className="interval-container">
+          <button
+            disabled={this.props.isPlay === true ? 'disabled' : ''}
+            onClick={this.decreaseCounter}
+          >
+            Dowm
+          </button>
 
-        <p className="interval-length"> {props.breakInterval} </p>
+          <p className="interval-length"> {this.props.breakInterval} </p>
 
-        <button
-          disabled={props.isPlay === true ? 'disabled' : ''}
-          onClick={increaseCounter}
-        >
-          Up
-        </button>
+          <button
+            disabled={this.props.isPlay === true ? 'disabled' : ''}
+            onClick={this.increaseCounter}
+          >
+            Up
+          </button>
+        </section>
       </section>
-    </section>
-  );
+    );
+  }
 }
 
 export default BreakInterval;
